@@ -8,6 +8,13 @@ jupyter = "*"
 numpy = "*"
 pandas = "*"
 matplotlib = "*"
+scipy = "*"
+emcee = "*"
+tqdm = "*"
+tabulate = "*"
+corner = "*"
+numba = "*"
+astropy = "*"
 
 [dev-packages]
 
