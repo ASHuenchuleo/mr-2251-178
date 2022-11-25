@@ -32,12 +32,13 @@ class InterCalibrator(object):
         if not os.path.isdir(self._datadir):
             os.mkdir(self._datadir)
         for band in self._bands:
+            band_data = self._data[self._data['Filter'] == band]
             for scope in self._scopes:
-                band_data = self._data[self._data['Filter'] == band]
+                scope_data = self._data[self._data['Tel'] == band_data]
                 filename = os.path.join(
                     self._datadir, f'{self._objName}_{band}_{scope}.dat')
-                band_data = band_data[['MJD', 'Flux', 'Error']]
-                band_data.to_csv(filename, index=False, header=False, sep=' ')
+                scope_data = scope_data[['MJD', 'Flux', 'Error']]
+                scope_data.to_csv(filename, index=False, header=False, sep=' ')
 
     def calibrate(self, filt, **kwargs):
         """Does the intercalibration for a given band and priors. Passes kwargs to PyROA
