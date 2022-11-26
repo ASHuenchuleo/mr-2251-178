@@ -34,7 +34,7 @@ class InterCalibrator(object):
         for band in self._bands:
             band_data = self._data[self._data['Filter'] == band]
             for scope in self._scopes:
-                scope_data = self._data[self._data['Tel'] == band_data]
+                scope_data = band_data[band_data['Tel'] == scope]
                 filename = os.path.join(
                     self._datadir, f'{self._objName}_{band}_{scope}.dat')
                 scope_data = scope_data[['MJD', 'Flux', 'Error']]
